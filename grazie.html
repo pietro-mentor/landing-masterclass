@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sei dentro! — Masterclass Meta Ads</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel (in locale resta spento: i test non sporcano i dati) -->
+  <script>
+    var META_PIXEL_ID = '1189048612459410';
+    if (location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname)) {
+      window.fbq = function () { console.log('[fbq locale]', JSON.stringify(Array.from(arguments))); };
+    } else {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    }
+
+    // Advanced matching: dati inseriti nel form (salvati in index.html).
+    // Il Pixel li cifra (SHA-256) prima di inviarli a Meta.
+    var userData = {};
+    try {
+      userData = JSON.parse(sessionStorage.getItem('lead_user_data') || '{}');
+      sessionStorage.removeItem('lead_user_data');
+    } catch (e) {}
+
+    fbq('init', META_PIXEL_ID, userData);
+    fbq('track', 'PageView');
+
+    // Lead solo se si arriva dal form (?lead=<event_id>), una volta sola per event_id
+    var leadId = new URLSearchParams(location.search).get('lead');
+    if (leadId) {
+      var alreadyTracked = false;
+      try { alreadyTracked = sessionStorage.getItem('lead_tracked') === leadId; } catch (e) {}
+      if (!alreadyTracked) {
+        fbq('track', 'Lead', { content_name: 'Masterclass Base' }, { eventID: leadId });
+        try { sessionStorage.setItem('lead_tracked', leadId); } catch (e) {}
+      }
+      // Toglie il parametro dall'URL così un refresh o una condivisione non rigenera il Lead
+      history.replaceState(null, '', location.pathname);
+    }
+  </script>
+  <!-- End Meta Pixel -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blu: #111547;
+      --verde: #64D7A4;
+      --grigio: #EAEBED;
+      --bianco: #FFFFFF;
+      --testo-soft: #4A4E72;
+      --verde-testo: #0B6E49;
+      --bordo: #D3D5DE;
+      --radius: 10px;
+      --titoli: 'NCS Radhiumz', 'Archivo', 'Be Vietnam Pro', sans-serif;
+      --testi: 'BB Casual Pro', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      font-family: var(--testi);
+      background: var(--grigio);
+      color: var(--blu);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 20px 40px; }
+    .container { width: 100%; max-width: 600px; }
+
+    .hero { padding: 40px 0 24px; }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--verde-testo);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: var(--titoli);
+      font-weight: 800;
+      font-size: clamp(30px, 7vw, 40px);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(transparent 58%, var(--verde) 58%);
+    }
+
+    .hero p.lead { font-size: 17px; color: var(--testo-soft); line-height: 1.5; margin-bottom: 20px; }
+
+    .card {
+      background: var(--bianco);
+      border-radius: 16px;
+      padding: 24px 26px;
+      margin-bottom: 16px;
+    }
+
+    .card.highlight { background: var(--blu); color: var(--grigio); }
+    .card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 15px; line-height: 1.6; }
+    .card p + p { margin-top: 10px; }
+    .card strong { font-weight: 700; }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      margin-top: 18px;
+      padding: 15px;
+      background: var(--verde);
+      color: var(--blu);
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: #7BE3B5; }
+    .btn-primary:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+
+    .copied { font-size: 13px; color: var(--verde); margin-top: 10px; min-height: 20px; text-align: center; }
+
+    .signature { display: flex; align-items: center; gap: 14px; margin-top: 24px; }
+
+    .signature img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+    .signature p { font-size: 15px; line-height: 1.5; }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--testo-soft);
+      border-top: 1px solid var(--bordo);
+      width: 100%;
+      max-width: 600px;
+      padding-top: 20px;
+    }
+
+    footer a { color: var(--testo-soft); text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 28px 0 20px; }
+      .hero p.lead { font-size: 15px; }
+      .card { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <main class="container">
+
+    <section class="hero">
+      <p class="eyebrow">Sei dentro</p>
+      <h1>Il <em>Giorno 1</em> è sbloccato!</h1>
+      <p class="lead">Controlla la tua casella email: la prima lezione della Masterclass sta arrivando.</p>
+    </section>
+
+    <div class="card highlight">
+      <div class="card-title">🎁 Mentre aspetti, ho un regalo per te</div>
+      <p>Ho un regalo per te e per le tue Campagne Meta Ads: scrivimi <strong>"Masterclass"</strong> in DM su Instagram per scoprirlo.</p>
+      <a class="btn-primary" id="dm-btn" href="https://ig.me/m/pietrocarpino" target="_blank" rel="noopener">Scrivimi "Masterclass" su Instagram →</a>
+      <div class="copied" id="copied" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💡 Importante: non trovi la mia email?</div>
+      <p>Dai un'occhiata anche nella casella <strong>SPAM</strong> o <strong>Promozioni</strong>: a volte la prima lezione si nasconde lì.</p>
+      <p>Per ricevere tutte le lezioni, <strong>rispondi alla prima mail</strong>, anche con un semplice "Ciao": così il mittente (io 😁) risulta affidabile.</p>
+    </div>
+
+    <div class="signature">
+      <img src="foto-pietro.jpg" alt="Pietro Carpino" width="52" height="52" />
+      <p>A presto,<br><strong>Pietro.</strong></p>
+    </div>
+
+  </main>
+
+  <footer class="container">
+    <p>Hiros SHPK · NUIS/P.IVA: M51309006G</p>
+    <p>Rr. "Kavajes", 1001, Tirana</p>
+    <p>
+      <a href="https://www.iubenda.com/privacy-policy/82641977" target="_blank" rel="noopener">Privacy Policy</a> ·
+      <a href="https://www.iubenda.com/privacy-policy/82641977/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // DM regalo: copia la parola chiave, poi il link apre la chat Instagram
+  document.getElementById('dm-btn').addEventListener('click', function () {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText('Masterclass').then(function () {
+        document.getElementById('copied').textContent = '✓ Ho copiato "Masterclass": incollalo nella chat e invia.';
+      }).catch(function () {});
+    }
+  });
+</script>
+
+</body>
+</html>

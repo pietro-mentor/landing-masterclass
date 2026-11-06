@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- Meta Pixel (in locale resta spento: i test non sporcano i dati) -->
+  <script>
+    var META_PIXEL_ID = '1189048612459410';
+    var IS_LOCAL = location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
+    if (IS_LOCAL) {
+      window.fbq = function () { console.log('[fbq locale]', JSON.stringify(Array.from(arguments))); };
+    } else {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    }
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1189048612459410&ev=PageView&noscript=1" alt="" /></noscript>
+  <!-- End Meta Pixel -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le basi delle Meta Ads, una lezione al giorno — Pietro Carpino</title>
+  <meta name="description" content="7 giorni via email, gratis, per iniziare a fare Meta Ads con un metodo chiaro: 6 lezioni e un glossario bonus." />
+  <link rel="canonical" href="https://masterclass.pietrocarpino.com/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Masterclass Meta Ads — Pietro Carpino" />
+  <meta property="og:title" content="Le basi delle Meta Ads, una lezione al giorno" />
+  <meta property="og:description" content="7 giorni via email, gratis, per iniziare a fare Meta Ads con un metodo chiaro." />
+  <meta property="og:url" content="https://masterclass.pietrocarpino.com/" />
+  <meta property="og:image" content="https://masterclass.pietrocarpino.com/foto-pietro-og.jpg" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="800" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blu: #111547;
+      --verde: #64D7A4;
+      --grigio: #EAEBED;
+      --bianco: #FFFFFF;
+      --testo: #111547;
+      --testo-soft: #4A4E72;
+      --verde-testo: #0B6E49;
+      --verde-chiaro: rgba(100,215,164,0.22);
+      --bordo: #D3D5DE;
+      --rosso: #B3261E;
+      --radius: 10px;
+      --titoli: 'NCS Radhiumz', 'Archivo', 'Be Vietnam Pro', sans-serif;
+      --testi: 'BB Casual Pro', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--testi);
+      background: var(--grigio);
+      color: var(--testo);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, video:focus-visible, .proof-list:focus-visible {
+      outline: 2px solid var(--verde-testo);
+      outline-offset: 2px;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar { background: var(--blu); color: var(--grigio); }
+
+    .topbar .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .topbar strong { font-weight: 600; }
+    .topbar span { color: var(--verde); font-weight: 600; white-space: nowrap; }
+
+    /* ── GRIGLIA PRINCIPALE ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "hero" "form" "stats" "path";
+      gap: 14px;
+      padding-top: 12px;
+      padding-bottom: 48px;
+    }
+
+    /* ── HERO ── */
+    .hero { grid-area: hero; }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--verde-testo);
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-family: var(--titoli);
+      font-weight: 800;
+      font-size: clamp(26px, 7.4vw, 36px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(transparent 58%, var(--verde) 58%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .lead { font-size: 15px; line-height: 1.45; color: var(--testo-soft); margin-bottom: 8px; text-wrap: balance; }
+    .only-desktop { display: none; }
+
+    .person { display: flex; align-items: center; gap: 10px; margin-bottom: 0; }
+
+    .person img {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .person-text { font-size: 13px; line-height: 1.35; color: var(--testo-soft); }
+    .person-text strong { display: block; font-size: 14px; color: var(--testo); font-weight: 700; }
+
+    /* ── FORM ── */
+    .form-side { grid-area: form; }
+
+    .form-card {
+      background: var(--bianco);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(17,21,71,0.12);
+      scroll-margin-top: 16px;
+    }
+
+    .form-title { display: none; }
+
+    .field { margin-bottom: 8px; }
+
+    .field > label:not(.consent) {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--testo);
+      margin-bottom: 4px;
+    }
+
+    .form-card input[type="text"],
+    .form-card input[type="email"],
+    .form-card input[type="tel"],
+    .form-card select {
+      width: 100%;
+      padding: 9px 14px;
+      font-size: 16px;
+      font-family: var(--testi);
+      border: 1px solid #8E92A8;
+      border-radius: var(--radius);
+      background: var(--bianco);
+      color: var(--testo);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-card select {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      padding-right: 28px;
+      background-image: linear-gradient(45deg, transparent 50%, var(--blu) 50%), linear-gradient(135deg, var(--blu) 50%, transparent 50%);
+      background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%;
+      background-size: 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .form-card input:focus,
+    .form-card select:focus { border-color: var(--verde-testo); box-shadow: 0 0 0 1px var(--verde-testo); }
+
+    .form-card input::placeholder { color: #6B6F8A; }
+
+    .form-card .invalid input,
+    .form-card .invalid select { border-color: var(--rosso); }
+
+    .phone-row { display: flex; gap: 8px; }
+    .phone-row select { width: 100px; flex-shrink: 0; }
+
+    .field-error {
+      display: none;
+      font-size: 13px;
+      color: var(--rosso);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .invalid .field-error { display: block; }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--testo-soft);
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .consent input {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      flex-shrink: 0;
+      accent-color: var(--blu);
+      cursor: pointer;
+    }
+
+    .consent a { color: var(--testo); }
+
+    /* honeypot anti-bot: invisibile alle persone */
+    .hp {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      background: var(--blu);
+      color: var(--bianco);
+      font-family: var(--testi);
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, opacity 0.2s;
+      text-align: center;
+    }
+
+    .btn-primary:hover { background: #1F2570; }
+    .btn-primary:active { transform: scale(0.99); }
+    .btn-primary:disabled { opacity: 0.6; cursor: wait; }
+
+    .form-error {
+      display: none;
+      font-size: 14px;
+      color: var(--rosso);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--testo-soft);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ── NUMERI ── */
+    .stats {
+      grid-area: stats;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      padding: 14px 0;
+      border-top: 1px solid var(--bordo);
+      border-bottom: 1px solid var(--bordo);
+    }
+
+    .stat { text-align: center; }
+    .stat strong { display: block; font-family: var(--titoli); font-weight: 800; font-size: 18px; line-height: 1.2; white-space: nowrap; }
+    .stat span { display: block; font-size: 11px; line-height: 1.3; color: var(--testo-soft); margin-top: 2px; }
+
+    /* ── PERCORSO ── */
+    .path { grid-area: path; padding-top: 16px; }
+
+    .section-title {
+      font-family: var(--titoli);
+      font-weight: 800;
+      font-size: clamp(26px, 5vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-intro { font-size: 15px; color: var(--testo-soft); line-height: 1.55; margin-bottom: 22px; max-width: 560px; }
+
+    .timeline { list-style: none; }
+
+    .timeline li {
+      position: relative;
+      padding: 0 0 20px 50px;
+    }
+
+    .timeline li:last-child { padding-bottom: 0; }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: 17px;
+      top: 8px;
+      bottom: -8px;
+      width: 2px;
+      background: var(--bordo);
+    }
+
+    .timeline li:last-child::before { display: none; }
+
+    .day-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--blu);
+      color: var(--bianco);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .timeline li.bonus .day-dot { background: var(--verde); color: var(--blu); }
+
+    .day-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--verde-testo);
+    }
+
+    .day-title { display: block; font-size: 16px; font-weight: 600; line-height: 1.4; }
+
+    /* ── TESTIMONIANZE ── */
+    .proof { background: var(--bianco); padding: 48px 0; }
+
+    .proof-featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .proof-big-quote {
+      font-family: var(--titoli);
+      font-weight: 700;
+      font-size: clamp(24px, 5vw, 34px);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .proof-name { font-size: 13px; font-weight: 700; color: var(--verde-testo); }
+
+    .proof-video { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #000; }
+    .proof-featured .proof-video { aspect-ratio: 4 / 5; }
+
+    .proof-video img,
+    .proof-video iframe {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+
+    .proof-video img[hidden] { display: none; }
+
+    .play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .play-btn[hidden] { display: none; }
+
+    .play-btn span {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--verde);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      transition: transform 0.15s;
+    }
+
+    .play-btn span::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 54%;
+      transform: translate(-50%, -50%);
+      border-style: solid;
+      border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent var(--blu);
+    }
+
+    .play-btn:hover span { transform: scale(1.08); }
+    .play-btn:focus-visible { outline: 2px solid var(--verde); outline-offset: -4px; }
+
+    .proof-list {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin: 0 -20px;
+      padding: 0 20px 10px;
+      scroll-padding-left: 20px;
+      scrollbar-color: var(--bordo) transparent;
+    }
+
+    .proof-card {
+      flex: 0 0 250px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proof-text { flex: 1; padding-bottom: 12px; }
+    .proof-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--verde-testo); margin-bottom: 4px; }
+    .proof-quote { font-family: var(--titoli); font-weight: 700; font-size: 17px; line-height: 1.25; margin-bottom: 6px; }
+    .proof-desc { font-size: 14px; line-height: 1.5; color: var(--testo-soft); margin-bottom: 6px; }
+
+    /* ── AUTORE ── */
+    .author { padding: 56px 0; }
+
+    .author-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+
+    .author-photo {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .author-caption { margin-top: 10px; font-size: 13px; line-height: 1.4; color: var(--testo-soft); }
+    .author-caption strong { display: block; font-size: 15px; color: var(--testo); }
+
+    .author-story .section-title { margin-bottom: 14px; }
+    .author-story p:not(.eyebrow):not(.section-title) { font-size: 16px; line-height: 1.65; color: var(--testo-soft); margin-bottom: 12px; max-width: 620px; }
+    .author-story p:last-child { color: var(--testo) !important; font-weight: 600; margin-bottom: 0 !important; }
+
+    .milestones {
+      list-style: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+      margin: 28px 0 0;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--bordo);
+    }
+
+    .milestones strong { display: block; font-family: var(--titoli); font-weight: 800; font-size: 20px; line-height: 1.2; color: var(--verde-testo); margin-bottom: 2px; }
+    .milestones span { display: block; font-size: 14px; line-height: 1.45; color: var(--testo-soft); }
+
+    /* ── CTA FINALE ── */
+    .closing { background: var(--blu); color: var(--grigio); padding: 48px 0; text-align: center; }
+
+    .closing h2 {
+      font-family: var(--titoli);
+      font-weight: 800;
+      font-size: clamp(26px, 5vw, 34px);
+      line-height: 1.2;
+      max-width: 620px;
+      margin: 0 auto 22px;
+    }
+
+    .closing .btn-primary { max-width: 340px; margin: 0 auto; background: var(--verde); color: var(--blu); }
+    .closing .btn-primary:hover { background: #7BE3B5; }
+    .closing .btn-primary:focus-visible { outline-color: var(--verde); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px 0 32px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--testo-soft);
+    }
+
+    footer a { color: var(--testo-soft); text-decoration: underline; }
+    footer a:hover { color: var(--testo); }
+
+    /* ── DESKTOP: percorso a sinistra, form fisso a destra ── */
+    @media (min-width: 900px) {
+      .main-grid {
+        grid-template-columns: minmax(0, 1fr) 380px;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: "hero form" "stats form" "path form";
+        column-gap: 40px;
+        row-gap: 20px;
+        padding-top: 36px;
+        padding-bottom: 64px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        column-gap: 24px;
+        align-items: center;
+      }
+
+      .hero-copy { grid-column: 1; }
+      .person { grid-column: 2; grid-row: 1; display: block; margin: 0; }
+
+      .person img { width: 220px; height: 220px; border-radius: 16px; margin-bottom: 8px; display: block; }
+      .person-text { font-size: 12px; }
+
+      .hero h1 { font-size: 38px; margin-bottom: 14px; }
+      .hero h1 em { display: block; width: fit-content; }
+      .only-desktop { display: inline; }
+      .lead { font-size: 17px; margin-bottom: 0; }
+
+      .form-side { align-self: start; position: sticky; top: 20px; }
+      .form-card { padding: 22px 24px; }
+
+      .form-title {
+        display: block;
+        font-family: var(--titoli);
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 1.2;
+        margin-bottom: 14px;
+      }
+
+      .stat strong { font-size: 25px; }
+      .stat span { font-size: 12px; }
+
+      .path { padding-top: 20px; }
+
+      .proof-featured { grid-template-columns: 320px minmax(0, 1fr); gap: 40px; align-items: center; }
+      .proof-list { display: grid; grid-template-columns: repeat(3, 300px); justify-content: space-between; margin: 0; padding: 0; overflow: visible; }
+
+      .author-grid { grid-template-columns: 300px minmax(0, 1fr); gap: 48px; align-items: start; }
+      .author-photo { max-width: none; }
+      .milestones { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 36px 0 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn-primary, .play-btn span { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap"><strong>Pietro Carpino</strong><span>Masterclass Meta Ads</span></div>
+</div>
+
+<main>
+
+  <div class="wrap main-grid">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Per chi parte dalle basi</p>
+        <h1>Le basi delle <br class="only-desktop">Meta Ads, <em>una lezione al giorno</em></h1>
+        <p class="lead">7 giorni via email, gratis, per iniziare a fare Meta Ads con un metodo chiaro: 6 lezioni e un glossario bonus.</p>
+      </div>
+      <div class="person">
+        <img src="foto-pietro.jpg" alt="Pietro Carpino" width="220" height="220" />
+        <div class="person-text">
+          <strong>Pietro Carpino</strong>
+          +10 anni di esperienza, 1.8 milioni gestiti in Meta Ads e +100 Meta Advertiser formati.
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <aside class="form-side">
+      <div class="form-card" id="form-card">
+        <p class="form-title">Comincia il percorso</p>
+        <form id="signup-form" novalidate>
+          <div class="field" data-field="name">
+            <label for="name">Nome e cognome</label>
+            <input type="text" id="name" name="name" placeholder="Mario Rossi" autocomplete="name" maxlength="80" required />
+            <div class="field-error" id="name-error"></div>
+          </div>
+
+          <div class="field" data-field="email">
+            <label for="email">La tua miglior email</label>
+            <input type="email" id="email" name="email" placeholder="nome@esempio.com" autocomplete="email" maxlength="128" required />
+            <div class="field-error" id="email-error"></div>
+          </div>
+
+          <div class="field" data-field="phone">
+            <label for="phone">Cellulare</label>
+            <div class="phone-row">
+              <select id="country" name="country" aria-label="Prefisso internazionale" autocomplete="tel-country-code">
+                <option value="IT" selected>🇮🇹 +39</option>
+                <option value="CH">🇨🇭 +41</option>
+                <option value="SM">🇸🇲 +378</option>
+                <option value="AL">🇦🇱 +355</option>
+                <option value="DE">🇩🇪 +49</option>
+                <option value="AT">🇦🇹 +43</option>
+                <option value="FR">🇫🇷 +33</option>
+                <option value="ES">🇪🇸 +34</option>
+                <option value="BE">🇧🇪 +32</option>
+                <option value="NL">🇳🇱 +31</option>
+                <option value="GB">🇬🇧 +44</option>
+                <option value="IE">🇮🇪 +353</option>
+                <option value="PT">🇵🇹 +351</option>
+                <option value="US">🇺🇸 +1</option>
+              </select>
+              <input type="tel" id="phone" name="phone" placeholder="347 123 4567" autocomplete="tel-national" inputmode="tel" maxlength="24" required />
+            </div>
+            <div class="field-error" id="phone-error"></div>
+          </div>
+
+          <div class="field" data-field="consent">
+            <label class="consent">
+              <input type="checkbox" id="consent" name="consent" required />
+              <span>Accetto l'<a href="https://www.iubenda.com/privacy-policy/82641977" target="_blank" rel="noopener">informativa Privacy</a> GDPR sul trattamento dei dati personali.</span>
+            </label>
+            <div class="field-error" id="consent-error"></div>
+          </div>
+
+          <!-- honeypot: se compilato è un bot -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">Inizia dal Giorno 1 →</button>
+          <p class="form-error" id="form-error" role="alert">Qualcosa è andato storto. Riprova tra qualche secondo.</p>
+          <p class="form-note">Gratis. Niente spam, cancellazione in un click.</p>
+        </form>
+      </div>
+    </aside>
+
+    <!-- NUMERI -->
+    <div class="stats">
+      <div class="stat"><strong>$1.8M</strong><span>gestiti in Meta Ads</span></div>
+      <div class="stat"><strong>10+ anni</strong><span>di esperienza</span></div>
+      <div class="stat"><strong>+100</strong><span>studenti affiancati 1to1</span></div>
+      <div class="stat"><strong>15</strong><span>nicchie scalate</span></div>
+    </div>
+
+    <!-- PERCORSO -->
+    <section class="path">
+      <h2 class="section-title">Il tuo percorso, giorno per giorno</h2>
+      <p class="section-intro">Ti svelo l'approccio strategico e operativo che insegno in Mentor, il mio percorso di affiancamento 1to1.</p>
+
+      <ol class="timeline">
+        <li><span class="day-dot" aria-hidden="true">1</span><span class="day-label">Giorno 1</span><span class="day-title">Business Manager (oggi portfolio business): come usarlo in maniera PRO con i tuoi clienti</span></li>
+        <li><span class="day-dot" aria-hidden="true">2</span><span class="day-label">Giorno 2</span><span class="day-title">Come organizzare un account pubblicitario in modo professionale</span></li>
+        <li><span class="day-dot" aria-hidden="true">3</span><span class="day-label">Giorno 3</span><span class="day-title">Realizzare creative performanti e testarle: ti condivido il mio framework di lavoro</span></li>
+        <li><span class="day-dot" aria-hidden="true">4</span><span class="day-label">Giorno 4</span><span class="day-title">Come individuare e analizzare le metriche più importanti per il tuo progetto</span></li>
+        <li><span class="day-dot" aria-hidden="true">5</span><span class="day-label">Giorno 5</span><span class="day-title">Le 3 grandi paure che devi sconfiggere, se vuoi lavorare con le Meta Ads</span></li>
+        <li><span class="day-dot" aria-hidden="true">6</span><span class="day-label">Giorno 6</span><span class="day-title">L'elemento fondamentale che ti farà fare la differenza come Meta Advertiser</span></li>
+        <li class="bonus"><span class="day-dot" aria-hidden="true">🎁</span><span class="day-label">Giorno 7 · Bonus</span><span class="day-title">Il glossario con tutte le terminologie più importanti</span></li>
+      </ol>
+    </section>
+
+  </div>
+
+  <!-- TESTIMONIANZE -->
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <div class="proof-featured">
+        <div class="proof-video" data-yt="7UsWXibKX1g" data-title="Video testimonianza di Alessandro">
+            <img src="video/7UsWXibKX1g.jpg" alt="Video testimonianza di Alessandro" loading="lazy" />
+            <a class="play-btn" href="https://youtu.be/7UsWXibKX1g" target="_blank" rel="noopener" aria-label="Guarda il video di Alessandro"><span aria-hidden="true"></span></a>
+          </div>
+        <div>
+          <p class="eyebrow" id="proof-title">Chi ha lavorato con me in Mentor</p>
+          <p class="proof-big-quote">"Mi hai dato più valore tu in 1h, che in un anno di corsi online"</p>
+          <p class="proof-name">Alessandro · eCommerce</p>
+        </div>
+      </div>
+
+      <div class="proof-list" tabindex="0" aria-label="Altre video testimonianze">
+        <article class="proof-card">
+          <div class="proof-text">
+            <p class="proof-tag">LeadGen</p>
+            <h3 class="proof-quote">Da ansia e frustrazione a lavorare con metodo strategico</h3>
+            <p class="proof-desc">"Con Pietro ho acquisito finalmente un framework di lavoro."</p>
+            <p class="proof-name">Silvia</p>
+          </div>
+          <div class="proof-video" data-yt="itm_pqTe9Mk" data-title="Video testimonianza di Silvia">
+            <img src="video/itm_pqTe9Mk.jpg" alt="Video testimonianza di Silvia" loading="lazy" />
+            <a class="play-btn" href="https://youtu.be/itm_pqTe9Mk" target="_blank" rel="noopener" aria-label="Guarda il video di Silvia"><span aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="proof-card">
+          <div class="proof-text">
+            <p class="proof-tag">LeadGen</p>
+            <h3 class="proof-quote">La paura di fare ADV è andata via</h3>
+            <p class="proof-desc">Ogni volta che apriva Ads Manager era un salto nel vuoto. Oggi i numeri non sono arabo, sa dove mettere le mani e si fida di sé stessa.</p>
+            <p class="proof-name">Tiziana</p>
+          </div>
+          <div class="proof-video" data-yt="5niBOVngZ_4" data-title="Video testimonianza di Tiziana">
+            <img src="video/5niBOVngZ_4.jpg" alt="Video testimonianza di Tiziana" loading="lazy" />
+            <a class="play-btn" href="https://youtu.be/5niBOVngZ_4" target="_blank" rel="noopener" aria-label="Guarda il video di Tiziana"><span aria-hidden="true"></span></a>
+          </div>
+        </article>
+        <article class="proof-card">
+          <div class="proof-text">
+            <p class="proof-tag">Prime Meta Ads</p>
+            <h3 class="proof-quote">4k investendo appena 200€</h3>
+            <p class="proof-desc">Era già bravo come SMM e con l'organico, gli mancava la parte ADV. Ha lavorato sul suo ad account, su progetti reali e dati alla mano.</p>
+            <p class="proof-name">Simone</p>
+          </div>
+          <div class="proof-video" data-yt="AVUps-4oaBI" data-title="Video testimonianza di Simone">
+            <img src="video/AVUps-4oaBI.jpg" alt="Video testimonianza di Simone" loading="lazy" />
+            <a class="play-btn" href="https://youtu.be/AVUps-4oaBI" target="_blank" rel="noopener" aria-label="Guarda il video di Simone"><span aria-hidden="true"></span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTORE -->
+  <section class="author" id="chi-ti-guida" aria-labelledby="author-title">
+    <div class="wrap">
+      <div class="author-grid">
+        <div class="author-side">
+          <img class="author-photo" src="foto-pietro-braccia.jpg" alt="Pietro Carpino a braccia conserte, con la maglietta di Crescere Digitale" width="800" height="800" loading="lazy" />
+          <p class="author-caption"><strong>Pietro Carpino</strong>Fondatore di Crescere Digitale e di Mentor</p>
+        </div>
+
+        <div class="author-story">
+          <p class="eyebrow">Chi ti guida</p>
+          <h2 class="section-title" id="author-title">Tutto è iniziato con una mail, a 15 anni</h2>
+          <p>Ciao, sono Pietro. Settembre 2010: prima di andare a scuola apro la casella di posta e trovo una mail sul dropshipping, vendere abbigliamento senza possederlo e senza un magazzino.</p>
+          <p>Da lì i primi studi da autodidatta e le prime, piccolissime soddisfazioni. Ricordo ancora il primo regalo che mi sono fatto: un iPod usato da 30€. Ero felice.</p>
+          <p>All'inizio ho provato di tutto anche io: corsi generici, campagne copiate da altri Advertiser, decisioni prese a sensazione. Non funzionava, perché ti insegnano tattiche, non un metodo.</p>
+          <p>In questi 7 giorni ti porto l'approccio che insegno ai miei studenti in Mentor, partendo dalle basi.</p>
+        </div>
+      </div>
+
+      <ol class="milestones" aria-label="Le tappe del mio percorso">
+        <li><strong>2010</strong><span>La mail, i primi studi da autodidatta.</span></li>
+        <li><strong>Poi</strong><span>Freelance su progetti di ogni genere, anche in USA, India e UK.</span></li>
+        <li><strong>2018</strong><span>Fondo Crescere Digitale: da freelance ad agenzia, con i miei collaboratori.</span></li>
+        <li><strong>Oggi</strong><span>Agenzia per le aziende, Mentor per chi vuole diventare un professionista.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA FINALE -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Smettila di improvvisare con le Meta Ads e inizia a lavorare con metodo.</h2>
+      <button type="button" class="btn-primary" id="scroll-to-form">Inizia dal Giorno 1 →</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Hiros SHPK · NUIS/P.IVA: M51309006G</p>
+    <p>Rr. "Kavajes", 1001, Tirana</p>
+    <p>
+      <a href="https://www.iubenda.com/privacy-policy/82641977" target="_blank" rel="noopener">Privacy Policy</a> ·
+      <a href="https://www.iubenda.com/privacy-policy/82641977/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Validazione numeri di telefono (metadati completi: distingue cellulari da fissi) -->
+<script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.11.4/bundle/libphonenumber-max.js" defer></script>
+
+<script>
+  // ── CONFIGURAZIONE ──
+  // URL del webhook "Catch Hook" del nuovo Zap (Zapier → LeadConnector, tag src-masterclass)
+  const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/3441543/49xsorc/';
+  // In locale (anteprima e test) nessun invio: i lead veri partono solo dal sito online
+  const SEND_TO_ZAPIER = !IS_LOCAL;
+  const SUBMIT_LABEL = 'Inizia dal Giorno 1 →';
+
+  const PAGE_LOADED_AT = Date.now();
+
+  // ── VALIDAZIONE (stessa logica della landing Newsletter) ──
+  const JUNK_WORDS = ['test', 'testing', 'prova', 'asd', 'asdf', 'asdasd', 'qwe', 'qwerty', 'fake', 'boh', 'nome', 'cognome',
+    'nessuno', 'anonimo', 'admin', 'user', 'utente', 'xxx', 'abc', 'aaa', 'bbb', 'ciao', 'lol', 'nn', 'na', 'no', 'si', 'ok'];
+
+  const DISPOSABLE_DOMAINS = ['mailinator.com', 'yopmail.com', 'yopmail.fr', 'guerrillamail.com', 'guerrillamail.info', 'sharklasers.com',
+    '10minutemail.com', 'tempmail.com', 'temp-mail.org', 'tempmail.net', 'trashmail.com', 'getnada.com', 'dispostable.com',
+    'maildrop.cc', 'fakeinbox.com', 'throwawaymail.com', 'mailnesia.com', 'minuteinbox.com', 'emailondeck.com', 'mohmal.com',
+    'tempr.email', 'discard.email', 'spamgourmet.com', 'mintemail.com', 'mytemp.email', 'burnermail.io', 'inboxkitten.com'];
+
+  const FAKE_DOMAINS = ['example.com', 'example.it', 'example.org', 'test.com', 'test.it', 'prova.it', 'prova.com', 'asd.com',
+    'asd.it', 'aaa.com', 'aaa.it', 'xxx.com', 'dominio.it', 'dominio.com', 'email.it', 'nome.it'];
+
+  const DOMAIN_TYPOS = {
+    'gmail.co': 'gmail.com', 'gmai.com': 'gmail.com', 'gmial.com': 'gmail.com', 'gamil.com': 'gmail.com',
+    'gnail.com': 'gmail.com', 'gmail.con': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmaill.com': 'gmail.com',
+    'hotmial.com': 'hotmail.com', 'hotmai.com': 'hotmail.com', 'hotmail.con': 'hotmail.com', 'hotmal.it': 'hotmail.it',
+    'libero.ti': 'libero.it', 'libero.com': 'libero.it', 'lbero.it': 'libero.it',
+    'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'icloud.co': 'icloud.com', 'iclod.com': 'icloud.com',
+    'outlok.com': 'outlook.com', 'outlook.co': 'outlook.com'
+  };
+
+  function stripAccents(s) {
+    return s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function isJunkWord(w) {
+    if (JUNK_WORDS.includes(w)) return true;
+    if (/(.)\1\1/.test(w)) return true;                     // "ddd", "aaaa"
+    if (w.length >= 3 && !/[aeiouy]/.test(w)) return true;  // "sdf", "qwrt"
+    if (w.length >= 4 && /^(..?)\1+$/.test(w)) return true; // "asas", "dada"
+    return false;
+  }
+
+  function validateName(raw) {
+    const value = raw.trim().replace(/\s+/g, ' ');
+    if (!value) return { error: 'Inserisci nome e cognome.' };
+    if (!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(value)) return { error: 'Usa solo lettere.' };
+    const words = value.split(' ').map(w => stripAccents(w).toLowerCase().replace(/['-]/g, '')).filter(Boolean);
+    if (words.filter(w => w.length >= 2).length < 2) return { error: 'Inserisci sia il nome che il cognome.' };
+    if (words.some(isJunkWord)) return { error: 'Inserisci il tuo vero nome e cognome.' };
+    if (words.length >= 2 && words.every(w => w === words[0])) return { error: 'Inserisci il tuo vero nome e cognome.' };
+    return { value };
+  }
+
+  const EMAIL_JUNK_WORDS = JUNK_WORDS.concat(['tester', 'prove', 'provaprova', 'demo', 'esempio', 'example', 'email', 'mail',
+    'spam', 'nospam', 'noreply', 'prova1', 'aaaa', 'qwertyuiop', 'zxc', 'zxcv', 'abcd', 'abcde', 'nomecognome', 'xyz', 'pippo', 'pluto', 'paperino']);
+
+  // "test1", "test_123", "123test", "testtest", "test.prova", "a1", "12345" → finte
+  function isJunkEmailLocal(local) {
+    const parts = local.split(/[._+-]+/).filter(Boolean);
+    const letters = local.replace(/[^a-z]/g, '');
+    const noSep = local.replace(/[._+-]/g, '');
+    if (letters.length < 2) return true;
+    if (EMAIL_JUNK_WORDS.includes(letters)) return true;
+    if (parts.length && parts.every(p => EMAIL_JUNK_WORDS.includes(p.replace(/\d+/g, '')) || /^\d+$/.test(p))) return true;
+    if (/^(.+)\1+$/.test(letters) && EMAIL_JUNK_WORDS.includes(letters.match(/^(.+?)\1+$/)[1])) return true;
+    if (/^(.)\1+$/.test(letters) || /(.)\1\1\1/.test(noSep)) return true;
+    if (letters.length >= 4 && !/[aeiouy]/.test(letters)) return true;
+    return false;
+  }
+
+  // dominio finto: test.org, asd.net, prova123.it
+  function isJunkEmailDomain(domain) {
+    const name = domain.split('.').slice(0, -1).join('.');
+    const label = name.split('.').pop().replace(/\d+/g, '');
+    return EMAIL_JUNK_WORDS.includes(label) && !['email', 'mail'].includes(label);
+  }
+
+  function validateEmail(raw) {
+    const value = raw.trim().toLowerCase();
+    if (!value) return { error: 'Inserisci la tua email.' };
+    if (!/^[a-z0-9._%+-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(value)) return { error: 'Questa email non sembra valida.' };
+    const [local, domain] = value.split('@');
+    if (DOMAIN_TYPOS[domain]) return { error: 'Forse intendevi ' + local + '@' + DOMAIN_TYPOS[domain] + '?' };
+    if (DISPOSABLE_DOMAINS.includes(domain)) return { error: 'Usa la tua email personale, non una temporanea.' };
+    if (FAKE_DOMAINS.includes(domain)) return { error: 'Inserisci la tua email reale.' };
+    if (isJunkEmailLocal(local) || isJunkEmailDomain(domain)) return { error: 'Inserisci la tua email reale.' };
+    return { value };
+  }
+
+  function isJunkNumber(digits) {
+    if (/(\d)\1{5,}/.test(digits)) return true;   // 6+ cifre uguali di fila
+    if (new Set(digits).size < 4) return true;     // es. 3331313131
+    const up = '01234567890123456789', down = '98765432109876543210';
+    for (let i = 0; i + 7 <= digits.length; i++) {
+      const chunk = digits.substr(i, 7);           // es. 1234567
+      if (up.includes(chunk) || down.includes(chunk)) return true;
+    }
+    return false;
+  }
+
+  function validatePhone(raw, country) {
+    let input = raw.trim().replace(/[\s.\-()\/]/g, '');
+    if (!input) return { error: 'Inserisci il tuo numero di cellulare.' };
+    if (input.startsWith('00')) input = '+' + input.slice(2);
+    if (!/^\+?\d{6,15}$/.test(input)) return { error: 'Inserisci solo numeri.' };
+
+    const lib = window.libphonenumber;
+    if (lib) {
+      const pn = lib.parsePhoneNumberFromString(input, input.startsWith('+') ? undefined : country);
+      if (!pn || !pn.isValid()) return { error: 'Questo numero non sembra valido. Controlla prefisso e cifre.' };
+      const type = pn.getType();
+      if (type && !['MOBILE', 'FIXED_LINE_OR_MOBILE', 'PERSONAL_NUMBER'].includes(type)) {
+        return { error: 'Inserisci un numero di cellulare, non un fisso.' };
+      }
+      if (isJunkNumber(pn.nationalNumber)) return { error: 'Inserisci il tuo vero numero di cellulare.' };
+      return { value: pn.number, country: pn.country || country };
+    }
+
+    // fallback se la libreria non si carica
+    const digits = input.replace(/\D/g, '');
+    if (digits.length < 8 || isJunkNumber(digits)) return { error: 'Inserisci il tuo vero numero di cellulare.' };
+    const dial = document.querySelector('#country option:checked').textContent.replace(/[^\d]/g, '');
+    return { value: input.startsWith('+') ? input : '+' + dial + digits.replace(/^0+/, ''), country };
+  }
+
+  // ── UI ERRORI ──
+  function setError(field, message) {
+    const wrap = document.querySelector('[data-field="' + field + '"]');
+    wrap.classList.toggle('invalid', !!message);
+    document.getElementById(field + '-error').textContent = message || '';
+  }
+
+  ['name', 'email', 'phone', 'consent'].forEach(field => {
+    const el = document.getElementById(field);
+    el.addEventListener(field === 'consent' ? 'change' : 'input', () => setError(field, ''));
+  });
+  document.getElementById('country').addEventListener('change', () => setError('phone', ''));
+
+  // ── TRACKING ──
+  function getParam(name) {
+    return new URLSearchParams(window.location.search).get(name) || '';
+  }
+
+  function getCookie(name) {
+    const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  // ── SUBMIT ──
+  const form = document.getElementById('signup-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const formError = document.getElementById('form-error');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    formError.style.display = 'none';
+
+    // bot: honeypot compilato o invio troppo rapido → finto successo, nessun invio e nessun Lead
+    if (form.elements.website.value || Date.now() - PAGE_LOADED_AT < 2500) {
+      window.location.href = 'grazie.html';
+      return;
+    }
+
+    const name = validateName(form.elements.name.value);
+    const email = validateEmail(form.elements.email.value);
+    const phone = validatePhone(form.elements.phone.value, form.elements.country.value);
+    const consentOk = form.elements.consent.checked;
+
+    setError('name', name.error);
+    setError('email', email.error);
+    setError('phone', phone.error);
+    setError('consent', consentOk ? '' : 'Devi accettare l\'informativa privacy per iscriverti.');
+
+    const firstInvalid = form.querySelector('.invalid input');
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    const nameParts = name.value.split(' ');
+    // event_id univoco: stesso valore nel Lead del Pixel e nei dati a Zapier, per deduplicare con la Conversions API
+    const leadId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2);
+    const payload = {
+      event_id: leadId,
+      full_name: name.value,
+      first_name: nameParts[0],
+      last_name: nameParts.slice(1).join(' '),
+      email: email.value,
+      phone: phone.value,
+      country: phone.country || '',
+      tag: 'src-masterclass',
+      consent: 'true',
+      consent_text: 'Accetto l\'informativa Privacy GDPR sul trattamento dei dati personali.',
+      consent_at: new Date().toISOString(),
+      source: 'Landing Masterclass Base',
+      page_url: window.location.href,
+      referrer: document.referrer,
+      utm_source: getParam('utm_source'),
+      utm_medium: getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      utm_content: getParam('utm_content'),
+      utm_term: getParam('utm_term'),
+      fbclid: getParam('fbclid'),
+      gclid: getParam('gclid'),
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc')
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+
+    try {
+      if (SEND_TO_ZAPIER) {
+        // form-urlencoded = richiesta "semplice", nessun preflight CORS verso Zapier
+        const res = await fetch(ZAPIER_WEBHOOK_URL, { method: 'POST', body: new URLSearchParams(payload) });
+        if (!res.ok) throw new Error('Webhook ' + res.status);
+      }
+
+      // Dati per l'advanced matching del Lead sulla thank you page (il Pixel li cifra prima dell'invio)
+      try {
+        sessionStorage.setItem('lead_user_data', JSON.stringify({
+          em: payload.email,
+          ph: payload.phone.replace(/\D/g, ''),
+          fn: payload.first_name.toLowerCase(),
+          ln: payload.last_name.toLowerCase(),
+          country: (payload.country || 'it').toLowerCase(),
+          external_id: leadId
+        }));
+      } catch (err) {}
+
+      window.location.href = 'grazie.html?lead=' + encodeURIComponent(leadId);
+    } catch (err) {
+      console.error(err);
+      formError.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = SUBMIT_LABEL;
+    }
+  });
+
+  // Se l'utente torna indietro dalla thank you page, riattiva il pulsante
+  window.addEventListener('pageshow', function () {
+    submitBtn.disabled = false;
+    submitBtn.textContent = SUBMIT_LABEL;
+  });
+
+  // ── SECONDA CTA ──
+  document.getElementById('scroll-to-form').addEventListener('click', function () {
+    document.getElementById('form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('name').focus({ preventScroll: true }), 400);
+  });
+
+  // ── VIDEO: YouTube si carica solo al clic; la copertina è locale ──
+  function closeVideo(box) {
+    const frame = box.querySelector('iframe');
+    if (!frame) return;
+    frame.remove();
+    box.querySelector('img').hidden = false;
+    box.querySelector('.play-btn').hidden = false;
+  }
+
+  document.querySelectorAll('.proof-video').forEach(box => {
+    box.querySelector('.play-btn').addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.proof-video').forEach(closeVideo);
+      const frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+      frame.title = box.dataset.title;
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      box.querySelector('img').hidden = true;
+      box.querySelector('.play-btn').hidden = true;
+      box.appendChild(frame);
+    });
+  });
+</script>
+
+</body>
+</html>
